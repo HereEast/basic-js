@@ -14,12 +14,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  * ]) => 3`
  *
  */
-function countCats(matrix) {  
-  let ears = "^^";
-  let cats = 0;
-
-  matrix.forEach(arr => {
-    if(arr.includes(ears)) cats += 1;
+function countCats(matrix) {
+    let ears = "^^";
+    let cats = 0;
+              
+    matrix.forEach(arr => {
+        arr.forEach(el => {
+          if(el === ears) cats += 1;
+      })
   })
 
   return cats;
