@@ -11,21 +11,54 @@ const { NotImplementedError } = require("../extensions/index.js");
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  *
  */
-function getSeason(date) {
-  if (!date) return "Unable to determine the time of year!";
-  if (date instanceof Date === false) throw Error("Invalid date!");
 
-  try {
-    let month = date.getMonth();
-    if (month === 11 || (month >= 0 && month < 2)) return "winter";
-    if (month >= 2 && month < 5) return "spring";
-    if (month >= 5 && month < 8) return "summer";
-    if (month >= 8 && month < 11) return "autumn";
-  } catch (err) {
-    throw Error("Invalid date!");
-  }
+// function getSeason(date) {
+//   if (!date) return "Unable to determine the time of year!";
+//   if (date instanceof Date === false) throw Error("Invalid date!");
+
+//   try {
+//     let month = date.getMonth();
+//     if (month === 11 || (month >= 0 && month < 2)) return "winter";
+//     if (month >= 2 && month < 5) return "spring";
+//     if (month >= 5 && month < 8) return "summer";
+//     if (month >= 8 && month < 11) return "autumn";
+//   } catch (err) {
+//     throw Error("Invalid date!");
+//   }
+// }
+
+function getSeason(data) {
+    if (!data) return "Unable to determine the time of year!";
+
+    try {
+        data.getTime();
+
+        let month = data.getMonth();
+        switch (month) {
+            case 11:
+            case 0:
+            case 1:
+                return "winter";
+            case 2:
+            case 3:
+            case 4:
+                return "spring";
+            case 5:
+            case 6:
+            case 7:
+                return "summer";
+            case 8:
+            case 9:
+            case 10:
+                return "fall";
+            default:
+                return "Unable to determine the time of year!";
+        }
+    } catch (error) {
+        throw new Error("Invalid date!");
+    }
 }
 
 module.exports = {
-  getSeason,
+    getSeason,
 };
